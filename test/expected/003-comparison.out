@@ -1,0 +1,66 @@
+SELECT 'ts' :: language <  'tt' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'ts' :: language <= 'tt' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'ts' :: language >  'tt' :: language;
+ ?column? 
+----------
+ f
+(1 row)
+
+SELECT 'tt' :: language >  'ts' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'tt' :: language >= 'ts' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'tt' :: language >  'tt' :: language;
+ ?column? 
+----------
+ f
+(1 row)
+
+SELECT 'tt' :: language >= 'tt' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'tt' :: language =  'ts' :: language;
+ ?column? 
+----------
+ f
+(1 row)
+
+SELECT 'tt' :: language != 'ts' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
+SELECT 'tt' :: language != 'tt' :: language;
+ ?column? 
+----------
+ f
+(1 row)
+
+SELECT 'tt' :: language =  'tt' :: language;
+ ?column? 
+----------
+ t
+(1 row)
+
