@@ -7,9 +7,11 @@ MODULE_big = language
 OBJS = src/language.o
 EXTRA_CLEAN = src/language_reverse.h src/language_forward.h
 
+REGRESS_OPTS_EXTRA ?= --temp-instance=$$PWD/tmp
+
 TESTS        = $(wildcard test/sql/*.sql)
 REGRESS      = $(patsubst test/sql/%.sql,%,$(TESTS))
-REGRESS_OPTS = --inputdir=test --load-extension=${EXTENSION}
+REGRESS_OPTS = --inputdir=test --load-extension=${EXTENSION} ${REGRESS_OPTS_EXTRA}
 
 all: concat
 
