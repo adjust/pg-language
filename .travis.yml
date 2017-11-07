@@ -48,6 +48,8 @@ matrix:
    allow_failures:
     - addons:
         postgresql: 9.3
+    - addons:
+        postgresql: 9.4
 script:
   - make installcheck
 after_failure:
