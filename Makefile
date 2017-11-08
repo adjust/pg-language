@@ -19,7 +19,7 @@ all: $(EXTENSION)--$(EXTVERSION).sql
 
 $(EXTENSION)--$(EXTVERSION).sql: $(wildcard sql/*.sql)
 	echo "-- complain if script is sourced in psql, rather than via CREATE EXTENSION" > $@
-	echo "\echo Use \"CREATE EXTENSION istore\" to load this file. \quit" >> $@
+	echo "\echo Use \"CREATE EXTENSION ${EXTENSION}\" to load this file. \quit" >> $@
 	echo "" >> $@
 	cat $^ >> $@
 
