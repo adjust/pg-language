@@ -9,26 +9,22 @@ matrix:
           - POSTGRESQL=9.3
        install:
            - sudo apt-get install postgresql-server-dev-9.3
-           - make && sudo make install
      - addons:
           postgresql: 9.4
        env:
           - POSTGRESQL=9.4
        install:
            - sudo apt-get install postgresql-server-dev-9.4
-           - make && sudo make install
      - addons:
           postgresql: 9.5
        install:
            - sudo apt-get install postgresql-server-dev-9.5
-           - make && sudo make install
        env:
           - POSTGRESQL=9.5
      - addons:
           postgresql: 9.6
        install:
            - sudo apt-get install postgresql-server-dev-9.6
-           - make && sudo make install
        env:
           - POSTGRESQL=9.6
      - # addons: postgresql: 10
@@ -42,7 +38,6 @@ matrix:
            - sudo sh -c 'echo "port=5432" >> /etc/postgresql/10/main/postgresql.conf'
            - sudo pg_ctlcluster 10 main restart
            - sudo -u postgres psql  -c "create user travis with superuser";
-           - make && sudo make install
        env:
           - POSTGRESQL=10
    allow_failures:
@@ -50,6 +45,7 @@ matrix:
         postgresql: 9.3
 
 script:
+  - make && sudo make install  
   - make installcheck
 after_failure:
   - cat regression.diffs
