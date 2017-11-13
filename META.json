@@ -1,0 +1,39 @@
+{
+   "name": "language",
+   "abstract": "Enumerable type for languages",
+   "version": "0.0.1",
+   "maintainer": [ "Chris Travers <christravers@adjust.com>", "Manuel Kniep <rapimo@adjust.com>" ],
+   "license": {
+      "PostgreSQL": "http://www.postgresql.org/about/licence"
+   },
+   "provides": { 
+      "language": {
+         "file": "sql/pg-language.sql",
+         "version": "0.0.1",
+         "abstract": "Enumerable language.  Stored in one byte."
+      }
+   },
+   "meta-spec": {
+     "version": "1.0.0",
+     "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "description": "This extnesion offers a one-byte storage type that works as an enum for major languages.",
+   "prereqs": {
+      "runtime": {
+        "requires": {
+           "PostgreSQL": "9.3.0"
+        }
+      }
+   },
+   "resources": {
+       "bugtracker": {
+           "web": "http://github.com/adjust/pg-language/issues"
+       },
+       "repository": {
+          "url": "git://github.com/adjust/pg-language.git",
+          "web": "http://github.com/adjust/pg-language",
+          "type": "git"
+       }
+   }
+}
+
