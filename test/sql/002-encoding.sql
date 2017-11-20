@@ -186,3 +186,4 @@ INSERT INTO language_enc VALUES('zu', 'zu');
 INSERT INTO language_enc VALUES('zz', 'zz');
 
 SELECT * FROM language_enc WHERE name :: language != lang;
+explain select * from language_enc WHERE name::language != 'id';

@@ -1,5 +1,4 @@
 
-
 CREATE TYPE language;
 
 CREATE FUNCTION supported_languages()
@@ -180,6 +179,7 @@ CREATE OPERATOR CLASS language_ops
     DEFAULT FOR TYPE language USING hash AS
         OPERATOR        1       = ,
         FUNCTION        1       hash_language(language);
+
 
 DO $$
 DECLARE version_num integer;

@@ -189,3 +189,10 @@ SELECT * FROM language_enc WHERE name :: language != lang;
 ------+------
 (0 rows)
 
+explain select * from language_enc WHERE name::language != 'id';
+                           QUERY PLAN                            
+-----------------------------------------------------------------
+ Seq Scan on language_enc  (cost=0.00..44.83 rows=1980 width=13)
+   Filter: ((name)::language <> 'id'::language)
+(2 rows)
+

@@ -69,7 +69,7 @@ language_out(PG_FUNCTION_ARGS)
             elog(ERROR, "internal language representation unknown: %u", curr);
     }
 
-    PG_RETURN_CSTRING(lang_str);
+    PG_RETURN_CSTRING(pstrdup(lang_str));
 }
 
 Datum
