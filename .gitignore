@@ -29,7 +29,3 @@
 
 regression*
 results
-
-# Generated files
-src/language_reverse.h
-src/language_forward.h
