@@ -1,7 +1,7 @@
 {
    "name": "language",
    "abstract": "Enumerable type for languages",
-   "version": "0.0.3",
+   "version": "0.0.4",
    "maintainer": [ "Chris Travers <chris.travers@adjust.com>", "Manuel Kniep <rapimo@adjust.com>" ],
    "license": {
       "PostgreSQL": "http://www.postgresql.org/about/licence"
@@ -9,7 +9,7 @@
    "provides": { 
       "language": {
          "file": "sql/pg-language.sql",
-         "version": "0.0.3",
+         "version": "0.0.4",
          "abstract": "Enumerable language.  Stored in one byte."
       }
    },
