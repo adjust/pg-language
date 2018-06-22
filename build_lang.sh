@@ -39,7 +39,7 @@ create_string(const char *chars)
 {
     char *str = (char *) palloc(3 * sizeof(char));
     memcpy(str, chars, 2 * sizeof(char));
-    str[3] = '\0';
+    str[2] = '\0';
     return str;
 }
 
