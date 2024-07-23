@@ -1,6 +1,13 @@
 BEGIN;
 SET max_parallel_workers_per_gather=4;
-SET force_parallel_mode=on;
+DO $$
+BEGIN
+    IF current_setting('server_version_num')::int >= 160000 THEN
+        EXECUTE 'SET debug_parallel_query = on';
+    ELSE
+        EXECUTE 'SET force_parallel_mode = on';
+    END IF;
+END $$;
 CREATE TABLE parallel_test(i int, c language) WITH (parallel_workers = 4);
 INSERT INTO parallel_test (i, c)
 SELECT i, c.country
@@ -21,8 +28,9 @@ SELECT COUNT(*) FROM parallel_test WHERE  c = 'id'::language;
          ->  Partial Aggregate
                Output: PARTIAL count(*)
                ->  Parallel Seq Scan on public.parallel_test
+                     Output: i, c
                      Filter: (parallel_test.c = 'id'::language)
-(9 rows)
+(10 rows)
 
 EXPLAIN (costs off,verbose)
 SELECT c, COUNT(*) FROM parallel_test GROUP BY 1;
@@ -31,17 +39,17 @@ SELECT c, COUNT(*) FROM parallel_test GROUP BY 1;
  Finalize GroupAggregate
    Output: c, count(*)
    Group Key: parallel_test.c
-   ->  Sort
+   ->  Gather Merge
          Output: c, (PARTIAL count(*))
-         Sort Key: parallel_test.c
-         ->  Gather
+         Workers Planned: 4
+         ->  Sort
                Output: c, (PARTIAL count(*))
-               Workers Planned: 4
+               Sort Key: parallel_test.c
                ->  Partial HashAggregate
                      Output: c, PARTIAL count(*)
                      Group Key: parallel_test.c
                      ->  Parallel Seq Scan on public.parallel_test
-                           Output: c
+                           Output: i, c
 (14 rows)
 
 ROLLBACK;
